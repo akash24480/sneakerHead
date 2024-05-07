@@ -1,0 +1,41 @@
+:root {
+  --color-primary: hsl(26, 100%, 55%);
+  --color-secondary: hsl(25, 100%, 94%);
+  --color-gray: hsl(219, 9%, 45%);
+  --color-lightGray: hsl(223, 64%, 98%);
+}
+
+.text {
+  color: var(--color-primary);
+}
+
+.discription {
+  color: var(--color-gray);
+}
+
+.discount {
+  background-color: var(--color-secondary);
+}
+
+.button {
+  background-color: var(--color-lightGray);
+}
+.button-buy {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.cart-hover {
+  display: none;
+}
+
+.cart-empty {
+  display: none;
+}
+.cart-items {
+  display: none;
+}
+
+.light-box {
+  background-color: rgba(0, 0, 0, 0.5);
+}

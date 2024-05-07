@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>E-commerce product page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="lightbox.min.css" />
+    <script src="lightbox-plus-jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- For the light box effect -->
+    <div
+      class="hidden gallery-show lg:bg-gray-700 lg:w-[100%] lg:h-[100%] lg:fixed lg:opacity-30"
+    ></div>
+    <div
+      class="hidden img-show lg:block lg:scale-0 lg:transition lg:duration-100 lg:w-[30%] lg:left-[35%] lg:h-[60%] lg:top-[20%] lg:fixed"
+    >
+      <span
+        class="close-lightbox lg:absolute lg:right-0 lg:top-[-30px] lg:cursor-pointer lg:rounded-lg"
+        ><svg
+          class="lg:fill-white"
+          width="14"
+          height="15"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      <img class="lg:rounded-xl" src="" alt="" />
+      <!-- previous and next button -->
+      <span
+        class="lg:absolute lg:top-[50%] lg:left-[-14px] lg:bg-white lg:w-8 lg:h-8 lg:flex lg:items-center lg:justify-center lg:rounded-full"
+      >
+        <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M11 1 3 9l8 8"
+            stroke="#1D2026"
+            stroke-width="3"
+            fill="none"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+
+      <span
+        class="lg:absolute lg:top-[50%] lg:right-[-14px] lg:bg-white lg:w-8 lg:h-8 lg:flex lg:items-center lg:justify-center lg:rounded-full"
+      >
+        <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m2 1 8 8-8 8"
+            stroke="#1D2026"
+            stroke-width="3"
+            fill="none"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      <!-- light-box down boxes -->
+      <div
+        id="gallery-2"
+        class="hidden lg:flex lg:justify-center lg:gap-3 lg:mt-6"
+      >
+        <img
+          class="lg:cursor-pointer lg:active:opacity-25 lg:hover:border-2 hover:lg:border-orange-700 lg:w-20 lg:h-20 lg:border-2 lg:rounded-lg"
+          src="./images/image-product-1.jpg"
+          alt="1"
+        />
+        <img
+          class="lg:cursor-pointer lg:active:opacity-25 lg:hover:border-2 hover:lg:border-orange-700 lg:w-20 lg:h-20 lg:border-2 lg:rounded-lg"
+          src="./images/image-product-2.jpg"
+          alt="2"
+        />
+        <img
+          class="lg:cursor-pointer lg:active:opacity-25 lg:hover:border-2 hover:lg:border-orange-700 lg:w-20 lg:h-20 lg:border-2 lg:rounded-lg"
+          src="./images/image-product-3.jpg"
+          alt="3"
+        />
+        <img
+          class="lg:cursor-pointer lg:active:opacity-25 lg:hover:border-2 hover:lg:border-orange-700 lg:w-20 lg:h-20 lg:border-2 lg:rounded-lg"
+          src="./images/image-product-4.jpg"
+          alt="4"
+        />
+      </div>
+    </div>
+
+    <section class="lg:px-28">
+      <!-- Navbar Section -->
+      <nav
+        class="flex justify-between h-[10vh] items-center px-5 relative lg:px-28 lg:static"
+      >
+        <!-- Menu option -->
+        <div class="flex items-center gap-5">
+          <div class="lg:hidden">
+            <img
+              class="openmenu relative z-40"
+              src="./images/icon-menu.svg"
+              alt=""
+            />
+            <img
+              class="closemenu hidden relative z-40"
+              src="./images/icon-close.svg"
+              alt=""
+            />
+          </div>
+          <h1 class="text-2xl font-bold">sneakers</h1>
+        </div>
+
+        <ul
+          class="toggle-menu absolute top-0 -left-full bg-white w-[70vw] h-[100vh] flex flex-col pt-[12vh] pl-10 gap-6 font-bold z-30 lg:static lg:pt-0 lg:flex-row lg:items-center lg:h-0 lg:font-light lg:-z-10"
+        >
+          <li class="cursor-pointer">Collections</li>
+          <li class="cursor-pointer">Man</li>
+          <li class="cursor-pointer">Women</li>
+          <li class="cursor-pointer">About</li>
+          <li class="cursor-pointer">Contact</li>
+        </ul>
+        <div class="flex items-center gap-3">
+          <!-- Cart Icon -->
+          <img
+            class="cart cursor-pointer"
+            src="./images/icon-cart.svg"
+            alt=""
+          />
+          <!-- User profile -->
+          <img
+            class="w-6 cursor-pointer"
+            src="./images/image-avatar.png"
+            alt="user-profile"
+          />
+        </div>
+        <!-- cart hover effect -->
+        <div
+          class="cart-empty shadow-2xl absolute top-16 right-10 z-40 h-[40vh] min-w-[80vw] lg:right-40 lg:min-w-[25vw] rounded-lg"
+        >
+          <div class="bg-white w-full h-full rounded-lg shadow-2xl">
+            <h1 class="font-bold text-2xl px-6 py-5">Cart</h1>
+            <hr />
+            <div class="flex justify-center items-center h-[50%]">
+              Your Cart is Empty
+            </div>
+            <div class="cart-items">
+              <!-- <div class="flex gap-8 items-center px-5 py-7">
+                <img
+                  class="w-12 rounded-md"
+                  src="./images/image-product-1-thumbnail.jpg"
+                  alt=""
+                />
+                <div class="discription">
+                  <p>Fall Limited Edition Sneakers</p>
+                  <p>
+                    $125.00 * 3
+                    <span class="font-bold text-black pl-3">$375.00</span>
+                  </p>
+                </div>
+                <img class="lg:h-4" src="./images/icon-delete.svg" alt="" />
+              </div>
+              <div class="flex justify-center items-center">
+                <button class="button-buy w-[90%] py-4 rounded-md font-bold">
+                  Checkout
+                </button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </nav>
+      <hr class="hidden border-1 border-black lg:block mb-4" />
+      <!-- End of Navbar Section -->
+
+      <!-- product section -->
+      <div
+        class="lg:flex lg:justify-between lg:gap-24 lg:items-center lg:px-28 lg:mt-20"
+      >
+        <!-- left side -->
+        <div class="w-full h-[400px] lg:w-[30vw]">
+          <div
+            class="relative w-[100%] h-[100%] overflow-hidden lg:w-[25vw] lg:h-[50vh] lg:rounded-lg lg:static lg:border-2"
+          >
+            <img
+              class="carousel absolute w-[100%] h-[100%] lg:hidden"
+              src="./images/image-product-4.jpg"
+              alt=""
+            />
+            <img
+              class="carousel absolute lg:hidden"
+              src="./images/image-product-3.jpg"
+              alt=""
+            />
+            <img
+              class="carousel absolute lg:hidden"
+              src="./images/image-product-2.jpg"
+              alt=""
+            />
+            <img
+              class="carousel absolute lg:rounded-lg lg:static lg:w-[100%] lg:h-[100%]"
+              src="./images/image-product-1.jpg"
+              alt=""
+            />
+            <div
+              onclick="slide_left(-1)"
+              class="absolute z-2 top-[50%] p-4 bg-white rounded-full ml-3 lg:hidden"
+            >
+              <svg
+                class="text-black h-4 w-4"
+                width="12"
+                height="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 1 3 9l8 8"
+                  stroke="#1D2026"
+                  stroke-width="3"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div
+              onclick="slide_right(1)"
+              class="absolute top-[50%] p-4 bg-white rounded-full mr-3 right-0 lg:hidden"
+            >
+              <svg
+                class="text-black h-4 w-4"
+                width="13"
+                height="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m2 1 8 8-8 8"
+                  stroke="#1D2026"
+                  stroke-width="3"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+          <!-- light-box -->
+
+          <div
+            id="gallery"
+            class="hidden lg:flex gap-6 mt-10 lg:items-center justify-center"
+          >
+            <img
+              class="light-box lg:cursor-pointer lg:w-20 lg:h-20 lg:border-2 lg:rounded-lg"
+              src="./images/image-product-1.jpg"
+              alt="1"
+            />
+            <img
+              class="lg:w-20 lg:cursor-pointer lg:h-20 lg:rounded-lg"
+              src="./images/image-product-2.jpg"
+              alt="2"
+            />
+            <img
+              class="lg:w-20 lg:cursor-pointer lg:h-20 lg:rounded-lg"
+              src="./images/image-product-3.jpg"
+              alt="3"
+            />
+            <img
+              class="lg:w-20 lg:cursor-pointer lg:h-20 lg:rounded-lg"
+              src="./images/image-product-4.jpg"
+              alt="4"
+            />
+          </div>
+        </div>
+        <!-- right side -->
+        <div class="px-5 py-4">
+          <h1 class="text font-semibold lg:font-bold lg:text-2xl">
+            SNEAKER COMPANY
+          </h1>
+          <h1 class="text-4xl font-bold py-3 lg:text-5xl">
+            Fall Limited Edition Sneakers
+          </h1>
+          <p class="discription py-5">
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they’ll withstand everything
+            the weather can offer.
+          </p>
+          <!-- Price and discount centre -->
+          <div class="flex justify-between mb-4 lg:flex-col lg:gap-1">
+            <div class="flex items-center gap-4">
+              <h1 class="font-bold text-3xl">$125.00</h1>
+              <p class="discount text font-bold px-2 rounded-md">50%</p>
+            </div>
+            <div>
+              <p class="discription font-bold line-through">$250.00</p>
+            </div>
+          </div>
+          <!-- item counts and cart -->
+          <div class="lg:flex lg:justify-between lg:gap-4 lg:items-center">
+            <div
+              class="button flex py-4 px-4 justify-between items-center rounded-md lg:w-[10vw]"
+            >
+              <p class="text minus cursor-pointer">
+                <img class="" src="./images/icon-minus.svg" alt="" />
+              </p>
+              <h1 class="quantity font-bold">0</h1>
+              <p class="text plus cursor-pointer">
+                <img class="" src="./images/icon-plus.svg" alt="" />
+              </p>
+            </div>
+            <button
+              class="add-to-cart button-buy w-full flex justify-center items-center gap-3 py-4 rounded-md mt-3 font-bold lg:mt-0 lg:w-[18vw]"
+            >
+              <img src="/images/icon-cart.svg" alt="" />
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collections
+  Men
+  Women
+  About
+  Contact
+
+  Sneaker Company
+
+  Fall Limited Edition Sneakers
+
+  These low-profile sneakers are your perfect casual wear companion. Featuring a 
+  durable rubber outer sole, they’ll withstand everything the weather can offer.
+
+  $125.00
+  50%
+  $250.00
+
+  0
+  Add to cart -->
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
